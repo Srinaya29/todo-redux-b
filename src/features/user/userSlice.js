@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
 const userSlice = createSlice({
   name: "users",
   initialState: [],
@@ -11,7 +12,15 @@ const userSlice = createSlice({
       };
       state.push(newUser);
     },
+    validateUser: (state, action) => {
+      const found = state.find(
+        (value) =>
+          value.email === action.payload.email &&
+          value.pass === action.payload.pass
+      );
+      return found;
+    },
   },
 });
-export const { addUser } = userSlice.actions;
+export const { addUser, validateUser } = userSlice.actions;
 export default userSlice.reducer;
