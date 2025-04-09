@@ -12,14 +12,6 @@ const userSlice = createSlice({
       };
       state.push(newUser);
     },
-    validateUser: (state, action) => {
-      const found = state.find(
-        (value) =>
-          value.email === action.payload.email &&
-          value.pass === action.payload.pass
-      );
-      return found;
-    },
   },
 });
 export const { addUser, validateUser } = userSlice.actions;

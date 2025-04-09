@@ -1,18 +1,17 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { validateUser } from "./userSlice";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 export default function () {
   const [userObj, setUserObj] = useState({});
-  const [msg,setMsg] = useState()
-  const dispatch = useDispatch()
+  const [msg, setMsg] = useState();
+  const users = useSelector((state) => state.users);
   const handleSubmit = () => {
-    const result = dispatch(validateUser(userObj))
+    const result = users.find(value=>value.email===userObj.email && value.pass === userObj.pass)
     if (result) {
-        setMsg("Welcome")
-    }
-    else {
-        setMsg("Invalid User")
+      setMsg("Welcome");
+    } else {
+      setMsg("Invalid User");
     }
   };
   return (
@@ -34,6 +33,8 @@ export default function () {
         />
       </p>
       <button onClick={handleSubmit}>Submit</button>
+      <hr></hr>
+      <Link to="/user">Create Account</Link>
     </div>
   );
 }
