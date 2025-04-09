@@ -42,12 +42,14 @@ export default function User() {
       </div>
       <div>
         <h3>User List</h3>
+        <ol>
         {users &&
           users.map((value) => (
-            <div key={value.id}>
+            <li key={value.id}>
               {value.name}-{value.email}-{value.pass}
-            </div>
+            </li>
           ))}
+          </ol>
       </div>
     </div>
   );
